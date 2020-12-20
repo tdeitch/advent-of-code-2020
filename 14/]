@@ -1,0 +1,20 @@
+import os
+import sys
+
+def load_program():
+    with open(os.path.join(sys.path[0], 'input.txt')) as f:
+        return [tuple(line.strip().split(" = ")) for line in f.readlines()]
+
+def run(program):
+    mask = None
+    mem = dict()
+
+    for cmd, val in program:
+        if cmd == "mask":
+            mask = val
+            continue
+        ptr = int(cmd[4:-1])
+        val = int(val)
+
+
+print(run(load_program()))
